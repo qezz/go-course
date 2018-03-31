@@ -25,10 +25,16 @@ func (self *SafeSet) Contains(str string) bool {
 }
 
 func (self *SafeSet) Add(str string) {
+	self.mux.Lock()
+	defer self.mux.Unlock()
+
 	self.set[str] = EmptyStruct{}
 }
 
 func (self SafeSet) String() string {
+	self.mux.Lock()
+	defer self.mux.Unlock()
+
 	var ret string
 
 	// string.Builder since go-1.10
