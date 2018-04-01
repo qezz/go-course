@@ -6,12 +6,12 @@ import (
 )
 
 func WordCount(s string) map[string]int {
-	r := map[string]int{}
+	m := map[string]int{}
 	words := strings.Fields(s)
 	for _, word := range words {
-		r[word] += 1
+		m[word] += 1
 	}
-	return r
+	return m
 }
 
 func main() {

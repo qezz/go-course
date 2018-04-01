@@ -8,10 +8,10 @@ func fibonacci() func() int {
 	f1 := 0
 	f2 := 1
 	return func() int {
-		f1, f2 = f2, f1 + f2
-		
-		return f1    // returns 1 1 2 3 5 ...
-		// return f2 // returns 1 2 3 5 8 ...
+		f := f1
+		f1, f2 = f2, f1+f2
+
+		return f
 	}
 }
 
@@ -21,4 +21,3 @@ func main() {
 		fmt.Println(f())
 	}
 }
-

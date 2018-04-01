@@ -40,7 +40,6 @@ func main() {
 	s2, err := Sqrt(-2)
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 	fmt.Println(s2)
 }

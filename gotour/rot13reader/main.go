@@ -19,10 +19,10 @@ func trasformRotChar(char byte, base, rot uint8, lower byte) byte {
 	return (char-lower+rot)%base + lower
 }
 
-func (self rot13Reader) Read(output []byte) (int, error) {
-	haveread, err := self.r.Read(output)
+func (r rot13Reader) Read(output []byte) (int, error) {
+	n, err := r.r.Read(output)
 
-	for i := 0; i < haveread; i++ {
+	for i := 0; i < n; i++ {
 		// // before:
 		// if output[i] >= 'A' && output[i] <= 'Z' {
 		// 	output[i] = (output[i]-'A'+13)%26 + 'A'
@@ -38,11 +38,7 @@ func (self rot13Reader) Read(output []byte) (int, error) {
 		}
 	}
 
-	if err == io.EOF {
-		return haveread, err
-	}
-
-	return haveread, nil
+	return n, err
 }
 
 func main() {
