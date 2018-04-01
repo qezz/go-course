@@ -31,6 +31,20 @@ func (self *SafeSet) Add(str string) {
 	self.set[str] = EmptyStruct{}
 }
 
+// Similar to `sync.Map.LoadOrStore`, but without actual load
+// https://godoc.org/sync#Map.LoadOrStore
+func (self *SafeSet) IsPresentOrAdd(str string) bool {
+	self.mux.Lock()
+	defer self.mux.Unlock()
+
+	_, present := self.set[str]
+	if !present {
+		self.set[str] = EmptyStruct{}
+	}
+
+	return present
+}
+
 func (self SafeSet) String() string {
 	self.mux.Lock()
 	defer self.mux.Unlock()

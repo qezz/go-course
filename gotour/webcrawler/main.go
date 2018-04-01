@@ -25,9 +25,7 @@ func Crawl(url string, depth int, fetcher Fetcher, cache *set.SafeSet, wg *sync.
 	fmt.Printf("found: %s %q\n", url, body)
 
 	for _, u := range urls {
-		if !cache.Contains(u) {
-			cache.Add(u)
-
+		if !cache.IsPresentOrAdd(u) {
 			wg.Add(1)
 			go Crawl(u, depth-1, fetcher, cache, wg)
 		}
