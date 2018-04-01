@@ -12,11 +12,7 @@ func Walk(t *tree.Tree, ch chan int) {
 		Walk(t.Left, ch)
 	}
 
-	if t.Value < 11 {
-		ch <- t.Value
-	} else {
-		close(ch)
-	}
+	ch <- t.Value
 
 	if t.Right != nil {
 		Walk(t.Right, ch)
@@ -52,4 +48,5 @@ func Same(t1, t2 *tree.Tree) bool {
 func main() {
 	fmt.Println(Same(tree.New(1), tree.New(1)))
 	fmt.Println(Same(tree.New(1), tree.New(2)))
+	fmt.Println(Same(tree.New(2), tree.New(2)))
 }
