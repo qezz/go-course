@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learn/gotour/webcrawler/set"
+	"github.com/qezz/go-course/gotour/webcrawler/set"
 	"sync"
 )
 
