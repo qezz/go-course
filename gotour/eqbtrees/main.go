@@ -19,10 +19,6 @@ func Walk(t *tree.Tree, ch chan int) {
 	}
 }
 
-func AreEqual(first, second int) bool {
-	return first == second
-}
-
 // Same determines whether the trees
 // t1 and t2 contain the same values.
 func Same(t1, t2 *tree.Tree) bool {
