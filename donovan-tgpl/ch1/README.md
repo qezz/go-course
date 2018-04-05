@@ -8,4 +8,4 @@
 
 ## Section 1.3 Finding Duplicate Lines
 
-* [Ex. 1.4](ex-1.4)
+- [x] [Ex. 1.4](ex-1.4)
