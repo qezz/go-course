@@ -9,3 +9,9 @@
 ## Section 1.3 Finding Duplicate Lines
 
 - [x] [Ex. 1.4](ex-1.4)
+
+## Section 1.4 Animated GIFs
+
+- [x] [Ex. 1.5](ex-1.5)
+- [x] [Ex. 1.6](ex-1.6)
+
