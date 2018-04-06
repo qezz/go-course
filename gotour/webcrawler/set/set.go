@@ -16,44 +16,44 @@ func NewSafeSet() SafeSet {
 	return SafeSet{set: make(map[string]EmptyStruct)}
 }
 
-func (self *SafeSet) Contains(str string) bool {
-	self.mux.Lock()
-	defer self.mux.Unlock()
+func (set *SafeSet) Contains(str string) bool {
+	set.mux.Lock()
+	defer set.mux.Unlock()
 
-	_, ok := self.set[str]
+	_, ok := set.set[str]
 	return ok
 }
 
-func (self *SafeSet) Add(str string) {
-	self.mux.Lock()
-	defer self.mux.Unlock()
+func (set *SafeSet) Add(str string) {
+	set.mux.Lock()
+	defer set.mux.Unlock()
 
-	self.set[str] = EmptyStruct{}
+	set.set[str] = EmptyStruct{}
 }
 
 // Similar to `sync.Map.LoadOrStore`, but without actual load
 // https://godoc.org/sync#Map.LoadOrStore
-func (self *SafeSet) IsPresentOrAdd(str string) bool {
-	self.mux.Lock()
-	defer self.mux.Unlock()
+func (set *SafeSet) IsPresentOrAdd(str string) bool {
+	set.mux.Lock()
+	defer set.mux.Unlock()
 
-	_, present := self.set[str]
+	_, present := set.set[str]
 	if !present {
-		self.set[str] = EmptyStruct{}
+		set.set[str] = EmptyStruct{}
 	}
 
 	return present
 }
 
-func (self SafeSet) String() string {
-	self.mux.Lock()
-	defer self.mux.Unlock()
+func (set SafeSet) String() string {
+	set.mux.Lock()
+	defer set.mux.Unlock()
 
 	var ret string
 
 	// string.Builder since go-1.10
 	ret += "[ "
-	for k := range self.set {
+	for k := range set.set {
 		ret += k
 		ret += " "
 	}
