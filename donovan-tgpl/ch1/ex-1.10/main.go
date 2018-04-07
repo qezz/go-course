@@ -1,57 +1,23 @@
 package main
 
 import (
-	"encoding/json"
+	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
-	"sync" // sync map
 	"time"
 
-	"bytes"
+	"github.com/qezz/go-course/donovan-tgpl/ch1/ex-1.10/httpcache"
 )
 
 // type HttpCache struct {
 // 	m sync.Map // map[string]string
 // }
 
-type HttpCache struct {
-	sync.Map
-}
-
-func (f *HttpCache) UnmarshalJSON(data []byte) error {
-	var tmpMap map[string]interface{}
-	if err := json.Unmarshal(data, &tmpMap); err != nil {
-		return err
-	}
-	for key, value := range tmpMap {
-		f.Store(key, value)
-	}
-	return nil
-}
-
-func (c HttpCache) MarshalJSON() ([]byte, error) {
-	tmpMap := make(map[string]string)
-	c.Range(func(k, v interface{}) bool {
-		tmpMap[k.(string)] = v.(string)
-		return true
-	})
-	return json.Marshal(tmpMap)
-}
-
 func main() {
-	// load cache if present
-	var cache HttpCache
-
-	dat, err := ioutil.ReadFile(".cache")
-	if err == nil {
-		err2 := json.Unmarshal(dat, &cache)
-		if err2 != nil {
-			fmt.Fprintln(os.Stderr, "Can't parse json")
-		}
-	}
+	cache := httpcache.NewCacheFromFile(".cache")
 
 	start := time.Now()
 	ch := make(chan string)
@@ -65,32 +31,19 @@ func main() {
 	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
 
 	// save to file
-
-	b, err := json.Marshal(cache)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	}
-
-	f, err := os.Create(".cache")
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	}
-	defer f.Close()
-
-	f.Write(b)
-
+	cache.SaveToFile(".cache")
 }
 
-func fetch(url string, cache *HttpCache, ch chan<- string) {
+func fetch(url string, cache *httpcache.HttpCache, ch chan<- string) {
 	start := time.Now()
 
 	var nbytes int64
 
 	if dom, ispresent := cache.Load(url); ispresent {
 		// read from cache
-		nbytes2, err := fmt.Fprintln(ioutil.Discard, dom.(string))
+		nbytes2, err := fmt.Fprint(ioutil.Discard, dom.(string))
 		if err != nil {
-			ch <- fmt.Sprintf("while reading %s: %v", url, err)
+			ch <- fmt.Sprintf("while reading %s from cache: %v", url, err)
 		}
 		nbytes = int64(nbytes2)
 	} else {
@@ -106,7 +59,7 @@ func fetch(url string, cache *HttpCache, ch chan<- string) {
 		cache.Store(url, buf.String())
 
 		if err != nil {
-			ch <- fmt.Sprintf("while reading %s: %v", url, err)
+			ch <- fmt.Sprintf("while reading %s from live: %v", url, err)
 			return
 		}
 	}

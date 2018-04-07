@@ -16,10 +16,10 @@ go run main.go https://example.com
 0.53s elapsed
 
 go run main.go https://example.com
-0.00s     1271  https://example.com
+0.00s     1270  https://example.com
 0.00s elapsed
 ```
 
 ## Known issues ##
 
-Read from cache adds additional byte to result
+This was a horrible experience.
