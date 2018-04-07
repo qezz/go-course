@@ -15,3 +15,12 @@
 - [x] [Ex. 1.5](ex-1.5)
 - [x] [Ex. 1.6](ex-1.6)
 
+## Section 1.5 Fetching a URL
+
+- [x] [Ex. 1.7](ex-1.7)
+- [x] [Ex. 1.8](ex-1.8)
+- [x] [Ex. 1.9](ex-1.9)
+
+## Section 1.6 Fetching URLs Concurrently
+
+- [x] [Ex. 1.10](ex-1.10)
