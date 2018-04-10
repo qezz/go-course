@@ -24,3 +24,8 @@
 ## Section 1.6 Fetching URLs Concurrently
 
 - [x] [Ex. 1.10](ex-1.10)
+- [ ] Ex. 1.11
+
+## Section 1.7 A Web Server
+
+- [x] [Ex. 1.12](ex-1.12)
