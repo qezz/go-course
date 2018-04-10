@@ -15,12 +15,12 @@
 4. **Type conversions are not explicit enough!** For compiler it's OK
    to have smth like `2 * 0.5`, but 
 
-        ```go
-        type A struct {
-            field int64
-        }
-        A.field * 0.5
-        ```
+    ```go
+    type A struct {
+        field int64
+    }
+    A.field * 0.5
+    ```
 
    yields a compile time error!
 
