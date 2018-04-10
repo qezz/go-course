@@ -23,5 +23,25 @@
     ```
 
    yields a compile time error!
+5. **No algebraic types!** Imagine you want to load a value from a
+   map. You should do it like this:
 
+    ```go
+	val, ok := m["key"]
+	if ok {
+		// do smth with val
+	}
+	
+	// or 
+	if !ok {
+		// return;
+	}	
+	```
+   
+   This error checking makes your code to look like spaghetti. For
+   example, in rust you receive an `Option<T>` type, therefore `val`
+   to be `Some(value)` or `None` and you can't forget to check it for
+   existance.
+6. **No practical Error type!** This issue makes error handling look like
+	smth you can't control: it is whether *it* (`string`) or `nil`.
 	
