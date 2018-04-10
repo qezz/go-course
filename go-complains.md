@@ -20,6 +20,7 @@
             field int64
         }
         A.field * 0.5
+		```
 
    yields a compile time error!
 
