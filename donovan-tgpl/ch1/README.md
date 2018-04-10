@@ -28,4 +28,8 @@
 
 ## Section 1.7 A Web Server
 
-- [x] [Ex. 1.12](ex-1.12)
+- [x] [Ex. 1.12](ex-1.12) Check this out [on Heroku](https://ancient-caverns-79291.herokuapp.com/?delay=2&size=100&cycles=10)
+
+## Server 1.8 Loose Ends
+
+- [ ] .
