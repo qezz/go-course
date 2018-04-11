@@ -83,10 +83,7 @@ func main() {
 func countLines(f *os.File, counts map[string]WordEntry) {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
-		we, ok := counts[input.Text()]
-		if !ok {
-			we = NewWordEntry()
-		}
+		we, _ := counts[input.Text()]
 		we.AddSource(f.Name())
 
 		counts[input.Text()] = we
