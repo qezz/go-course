@@ -1,5 +1,8 @@
 # Complains about Go
 
+> The most comprehensive thoughs are already told by Sylvain Wallez,
+> see their article "[Go: the Good, the Bad and the Ugly](https://bluxte.net/musings/2018/04/10/go-good-bad-ugly/)"
+
 1. **Zero-values are bullshit!** There is a bunch of cases when it isn't
    possible to think through the default value. For example, if you
    create a Point, it **mustn't** be placed at (0, 0)!
