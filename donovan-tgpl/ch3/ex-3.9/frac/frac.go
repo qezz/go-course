@@ -127,7 +127,7 @@ func (frac Frac) Write(out io.Writer) {
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for py := 0; py < height; py++ {
 		for px := 0; px < width; px++ {
-			ssp := frac.SupersampledPixel(Mandelbrot, frac.ss, width, height, px, py)
+			ssp := frac.SupersampledPixel(frac.f, frac.ss, width, height, px, py)
 
 			// Image point (px, py) represents complex value z.
 			img.Set(px, py, ssp)
