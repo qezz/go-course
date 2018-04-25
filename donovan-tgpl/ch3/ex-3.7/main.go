@@ -11,14 +11,13 @@ import (
 
 func main() {
 	const (
-		xmin, ymin, xmax, ymax = -2, -2, +2, +2
-		width, height          = 1024, 1024
+		width, height = 1024, 1024
 	)
 
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for py := 0; py < height; py++ {
 		for px := 0; px < width; px++ {
-			ssp := frac.SupersampledPixel(frac.Newton, 10, width, height, px, py)
+			ssp := frac.SupersampledPixel(frac.Mandelbrot, 10, width, height, px, py)
 
 			// Image point (px, py) represents complex value z.
 			img.Set(px, py, ssp)
