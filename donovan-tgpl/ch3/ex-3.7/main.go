@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/qezz/go-course/donovan-tgpl/ch3/ex-3.6/mandelbrot"
+	"github.com/qezz/go-course/donovan-tgpl/ch3/ex-3.7/frac"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for py := 0; py < height; py++ {
 		for px := 0; px < width; px++ {
-			ssp := mandelbrot.SupersampledPixel(2, width, height, px, py)
+			ssp := frac.SupersampledPixel(frac.Newton, 10, width, height, px, py)
 
 			// Image point (px, py) represents complex value z.
 			img.Set(px, py, ssp)
