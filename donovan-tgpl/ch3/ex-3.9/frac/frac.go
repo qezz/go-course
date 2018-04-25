@@ -110,6 +110,7 @@ func FracBuilder(vars map[string]string) Frac {
 	case "newton":
 		f = Newton
 	default:
+		log.Print("Use default function")
 		f = Mandelbrot
 	}
 
