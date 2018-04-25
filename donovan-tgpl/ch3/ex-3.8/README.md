@@ -38,7 +38,8 @@ func (z *ComplexBigFloat) Add(x, y ComplexBigFloat) *ComplexBigFloat {
 
 // Sooo.. You write:
 complexRes := NewComplexBigFloat(..., ...)
-complexRes.Add(complexA, complexB).Mul(complexC)
+complexRes.Add(complexA, complexB)
+complexRes.Mul(complexRes, complexC)
 ```
 
 is this looks "easier" to read?
