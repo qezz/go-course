@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/qezz/go-course/donovan-tgpl/ch3/ex-3.5/mandelbrot"
+	"github.com/qezz/go-course/donovan-tgpl/ch3/ex-3.6/mandelbrot"
 )
 
 func main() {
