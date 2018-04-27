@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 // The (al)most shortest and most easiest way
@@ -17,6 +18,8 @@ const (
 	YB   = dist * ZB
 )
 
+// TODO: via logarithms
+
 func main() {
 	fmt.Println(KB)
 	fmt.Println(MB)
@@ -26,4 +29,6 @@ func main() {
 	fmt.Println(EB)
 	// fmt.Println(ZB)
 	// fmt.Println(YB)
+
+	fmt.Println(math.Exp(10) / math.Ln10)
 }
