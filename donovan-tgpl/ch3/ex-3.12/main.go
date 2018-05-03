@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 	"sync"
 )
 
@@ -49,9 +48,9 @@ func AreAnagrams(a, b string) bool {
 	go AsyncFreqsToHashMap(b, &bDict, &wg)
 	wg.Wait()
 
-	// Compare values for every alphabet letter is too easy.
-	// We need to go deeper.
-	return reflect.DeepEqual(aDict, bDict)
+	// Someone said that reflect.DeepEqual() is about 80 times
+	// slower than custom comparition function.
+	return AreMapsEqual(aDict, bDict)
 }
 
 func main() {
